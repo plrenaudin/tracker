@@ -11,5 +11,11 @@ export const useEvents = () => {
             return newState;
         });
     }
-    return [events, track];
+
+    const clear = () => setEvents(() => {
+        window.localStorage.removeItem('events');
+        return []
+    });
+
+    return {events, track, clear};
 }
