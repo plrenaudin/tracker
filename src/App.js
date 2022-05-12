@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import { useRef } from 'react';
 import './App.css';
+import { useEvents } from './store';
 
 function App() {
+  const [events, track] = useEvents();
+  const eventsEl = useRef();
+
+  const trackEvent = (event) => {
+    track(event);
+    setTimeout(() => eventsEl.current.scrollTop = eventsEl.current.scrollHeight);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul className='events' ref={eventsEl}>
+        {events.length === 0 && <li>No Events...</li>}
+        {events.map((event,index) =>
+          <li key={index}>{event.t} - {event.e}</li>
+        )}
+      </ul>
+      <div className='actions'>
+        <button className="button" onClick={() => trackEvent('cough')}>Cough</button>
+        <button className="button" onClick={() => trackEvent('remedies')}>Remedies</button>
+      </div>
     </div>
   );
 }
