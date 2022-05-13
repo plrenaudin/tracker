@@ -3,6 +3,7 @@ import "./App.css";
 import Modal from "./Modal";
 import { useEvents } from "./store";
 import { DEFAULT_EVENT } from "./constants";
+import dayjs from "dayjs";
 
 function App() {
   const { events, track, clear, actions, addAction } = useEvents();
@@ -34,7 +35,7 @@ function App() {
         {events.length === 0 && <li>No Events...</li>}
         {events.map((event, index) => (
           <li key={index}>
-            <b>{event.t}</b> - {event.e}
+            <b>{event.t.slice(10)}</b> - {event.e}
           </li>
         ))}
       </ul>
