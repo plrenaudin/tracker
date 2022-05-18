@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import { useState } from "react";
 
 const MAX_CUSTOM_ACTIONS = 6;
+export const DATE_FORMAT = "YYYY-MM-DD HH:mm:ss";
 
 export const useEvents = () => {
   const [events, setEvents] = useState(
@@ -13,10 +14,7 @@ export const useEvents = () => {
 
   const track = (event) => {
     setEvents((state) => {
-      const newState = [
-        ...state,
-        { t: dayjs().format("YYYY-MM-DD HH:mm:ss"), e: event },
-      ];
+      const newState = [...state, { t: dayjs().format(DATE_FORMAT), e: event }];
       window.localStorage.setItem("events", JSON.stringify(newState));
       return newState;
     });

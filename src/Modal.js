@@ -1,16 +1,19 @@
 import { useRef } from "react";
 
-export default function Modal({ closeFn, actions, addAction, track }) {
+export default function Modal({ closeFn, actions, addAction, trackEvent }) {
   const input = useRef();
   const onAddAction = (e) => {
     e.preventDefault();
-    addAction(input.current.value);
+    const newAction = input.current.value.trim();
+    if (newAction) {
+      addAction(input.current.value);
+    }
     input.current.value = "";
     closeFn();
   };
 
   const onAction = (action) => {
-    track(action);
+    trackEvent(action);
     closeFn();
   };
   return (
@@ -30,6 +33,9 @@ export default function Modal({ closeFn, actions, addAction, track }) {
           + Add
         </button>
       </form>
+      <button className="button" onClick={closeFn}>
+        Close
+      </button>
     </>
   );
 }

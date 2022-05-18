@@ -8,6 +8,7 @@
 
 .events {
   margin: 0;
+  padding: 0 0 0 1rem;
   overflow: auto;
   list-style-type: none;
   height: 100vh;
@@ -17,14 +18,20 @@
 .events li {
   height: 2rem;
 }
-
-.trash {
-  position: absolute;
+.other {
+  color: #0b9c42;
+}
+.trash,
+.stats {
+  position: fixed;
   top: 1rem;
   right: 1rem;
   border: none;
   background: none;
   font-size: 2rem;
+}
+.stats {
+  top: 3rem;
 }
 
 .actions {
@@ -95,4 +102,9 @@ button {
   box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
     rgba(50, 50, 93, 0.2) 0 6px 15px 0, rgba(0, 0, 0, 0.1) 0 2px 2px 0,
     rgba(50, 151, 211, 0.3) 0 0 0 4px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
 }
